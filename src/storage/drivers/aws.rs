@@ -50,10 +50,12 @@ pub fn new(bucket_name: &str, region: &str) -> StorageResult<Box<dyn StoreDriver
 pub fn with_credentials(
     bucket_name: &str,
     region: &str,
+    endpoint: &str,
     credentials: Credential,
 ) -> StorageResult<Box<dyn StoreDriver>> {
     let mut s3 = S3::default()
         .bucket(bucket_name)
+        .endpoint(endpoint)
         .region(region)
         .access_key_id(&credentials.key_id)
         .secret_access_key(&credentials.secret_key);
